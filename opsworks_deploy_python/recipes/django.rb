@@ -45,16 +45,6 @@ node[:deploy].each do |application, deploy|
     app_name application
     run_action [] # Don't run actions here
   end
-  
-  # Migration
-  if deploy["migrate"] && deploy["migration_command"]
-      migration_command = "#{::File.join(deploy["venv"], "bin", "python")} #{deploy["migration_command"]}"
-    execute migration_command do
-      cwd ::File.join(deploy[:deploy_to], 'current')
-      user deploy[:user]
-      group deploy[:group]
-    end
-  end
 
   # collect static resources
   if deploy["django_collect_static"]
