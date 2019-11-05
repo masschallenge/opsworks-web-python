@@ -4,6 +4,7 @@ impact_environment = node['deploy']['mc']['environment']['IMPACT_ENVIRONMENT']
 ecs_secret_access_key = node['deploy']['mc']['environment']['ECS_SECRET_ACCESS_KEY']
 ecs_access_key_id = node['deploy']['mc']['environment']['ECS_ACCESS_KEY_ID']
 ecs_default_region = node['deploy']['mc']['environment']['AWS_DEFAULT_REGION']
+accelerate_version = node['deploy']['mc']["scm"]["revision"]
 script "install_keys" do
   interpreter "bash"
   user "deploy"
@@ -17,6 +18,7 @@ script "install_keys" do
     export ECS_ACCESS_KEY_ID=#{ecs_access_key_id}
     export AWS_ACCESS_KEY_ID=#{ecs_access_key_id}
     export AWS_SECRET_ACCESS_KEY=#{ecs_secret_access_key}
+    export ACCELERATE_VERSION=#{accelerate_version}
     if [ -z "$IMPACT_ENVIRONMENT" ]; then 
     	echo "IMPACT_ENVIRONMENT not set. install keys skipped"
     else
