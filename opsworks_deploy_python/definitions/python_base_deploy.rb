@@ -68,12 +68,7 @@ define :python_base_setup do
         ignore_failure true  # This one doesn't always exist
       end
     end
-    
-    package "#{py_command}-dev" do
-      action :install
-      options '--force-yes'
-      ignore_failure true  # This one doesn't always exist
-    end
+  
 
     package "#{py_command}-distribute-deadsnakes" do
       action :install
