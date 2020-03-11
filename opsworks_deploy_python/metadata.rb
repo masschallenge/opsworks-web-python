@@ -9,7 +9,7 @@ version          "0.0.1"
 supports "ubuntu"
 
 depends "deploy"
-depends "poise-python"
+depends "python"
 depends "gunicorn"
 depends "supervisor"
 depends "scm_helper"
