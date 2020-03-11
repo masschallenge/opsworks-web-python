@@ -69,13 +69,6 @@ define :python_base_setup do
       end
     end
   
-
-    package "#{py_command}-distribute-deadsnakes" do
-      action :install
-      options '--force-yes'
-      ignore_failure true  # This one doesn't always exist
-    end
-
     if py_version.to_f >= 3.4
       node.force_override['python']['binary'] = "/usr/bin/#{py_command}"
     end
