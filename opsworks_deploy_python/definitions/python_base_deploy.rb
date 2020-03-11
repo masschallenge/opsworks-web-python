@@ -54,10 +54,6 @@ define :python_base_setup do
         action :install
         options '--force-yes'
       end
-      package "#{py_command}-venv" do
-        action :install
-        options '--force-yes'
-      end
       package "python3-pip" do
         action :install
         options '--force-yes'
