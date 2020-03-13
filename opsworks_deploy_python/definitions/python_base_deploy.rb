@@ -35,7 +35,8 @@ define :python_base_setup do
   virtualenv_ver_map = {
     "2.4" => "1.7.2",
     "2.5" => "1.9.1",
-    "2.6" => "1.11.4"
+    "2.6" => "1.11.4",
+    "3.6" => "20.0.2"
   }
   if use_custom_py
     # We need to install a python other than 2.7
