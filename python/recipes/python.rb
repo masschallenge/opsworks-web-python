@@ -9,24 +9,7 @@ execute "update" do
 end
 
 
-package 'python3.6' do
-    options '--force-yes'
-    action :install
-end
-
-package 'python3.6-dev' do
-    options '--force-yes'
-    action :install
-end
-
-alternatives 'python-set-version-3' do
-    link_name 'python3'
-    path '/usr/bin/python3.6'
-    priority 100
-    action :install
-end
-
-execute "install" do
+execute "install-python" do
 	command 'sudo add-apt-repository -y ppa:deadsnakes/ppa'
 	command 'sudo apt-get update & sudo apt-get install -y python3.6'
 	command 'sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1'
