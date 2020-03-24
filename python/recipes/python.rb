@@ -8,6 +8,8 @@ execute "set-default-python" do
 end
 
 execute "install-setuptools" do
-	command 'wget https://bootstrap.pypa.io/get-pip.py -O - | sudo python3'
-	command 'sudo curl https://bootstrap.pypa.io/ez_setup.py -o - | sudo python3.6 && sudo python3.6 -m easy_install pip'
+	command <<-EOF
+		wget https://bootstrap.pypa.io/get-pip.py -O - | sudo python3
+		sudo curl https://bootstrap.pypa.io/ez_setup.py -o - | sudo python3.6 && sudo python3.6 -m easy_install pip
+	EOF
 end
