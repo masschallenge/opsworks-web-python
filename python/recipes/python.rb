@@ -1,6 +1,11 @@
 
 execute "install-python" do
-	command 'sudo ln -s /usr/lib/python3/dist-packages/apt_pkg.cpython-34m-x86_64-linux-gnu.so /usr/lib/python3/dist-packages/apt_pkg.so && sudo add-apt-repository -y ppa:deadsnakes/ppa && sudo apt-get update && sudo apt-get install -y python3.6'
+	command <<-EOF
+		if [ ! -f  "/usr/lib/python3/dist-packages/apt_pkg.so" ]; then
+			sudo ln -s /usr/lib/python3/dist-packages/apt_pkg.cpython-34m-x86_64-linux-gnu.so /usr/lib/python3/dist-packages/apt_pkg.so
+		fi
+		sudo add-apt-repository -y ppa:deadsnakes/ppa && sudo apt-get update && sudo apt-get install -y python3.6
+	EOF
 end
 
 execute "set-default-python" do
