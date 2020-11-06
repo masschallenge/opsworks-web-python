@@ -83,7 +83,7 @@ define :python_base_setup do
       ignore_failure true  # This one doesn't always exist
     end
 
-    package "#{py_command}-distribute-deadsnakes" do
+    package "#{py_command}" do
       action :install
       options '--force-yes'
       ignore_failure true  # This one doesn't always exist
