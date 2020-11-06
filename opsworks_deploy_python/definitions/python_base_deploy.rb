@@ -49,7 +49,9 @@ define :python_base_setup do
       action :add
     end
 
-    apt_update 'update'
+    execute "update" do
+      command 'sudo apt-get update'
+    end
 
     if py_version.to_f >= 3.4
       package "#{py_command}" do
