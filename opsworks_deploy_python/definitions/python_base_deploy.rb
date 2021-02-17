@@ -41,7 +41,7 @@ define :python_base_setup do
     # We need to install a python other than 2.7
     py_command = "python#{py_version}"
     apt_repository 'deadsnakes' do
-      uri 'http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu'
+      uri 'http://ppa.launchpad.net/deadsnakes/ppa/ubuntu'
       distribution node['lsb'] && node['lsb']['codename'] || 'precise'
       components ['main']
       keyserver "keyserver.ubuntu.com"
