@@ -49,6 +49,10 @@ define :python_base_setup do
       action :add
     end
 
+    execute "update" do
+      command 'sudo apt-get update'
+    end
+
     if py_version.to_f >= 3.4
       package "#{py_command}" do
         action :install
@@ -63,7 +67,7 @@ define :python_base_setup do
         options '--force-yes'
       end
       python_pip "setuptools" do
-        version "41.0.1"
+        version "47.0.0"
       end
     else
       package "#{py_command}-setuptools" do
@@ -114,8 +118,8 @@ define :python_base_setup do
   
   if !use_custom_py
     python_pip "setuptools" do
-      version 3.3
-      action :upgrade
+      version 47.0.0
+      action :install 
     end
   end
 
