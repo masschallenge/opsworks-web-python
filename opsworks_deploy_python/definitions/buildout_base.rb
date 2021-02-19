@@ -105,6 +105,8 @@ define :buildout_configure do
         action :nothing
       end
 
+      # execute '/srv/www/mc/current/bin/python ./bootstrap.py --version=2.13.2'
+
       python_pip "setuptools" do
         version "47.0.0"
       end
