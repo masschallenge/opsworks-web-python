@@ -118,7 +118,7 @@ define :python_base_setup do
   
   if !use_custom_py
     python_pip "setuptools" do
-      version 47.0.0
+      version "47.0.0"
       action :install 
     end
   end
