@@ -79,7 +79,7 @@ define :python_base_setup do
         options '--force-yes'
       end
       python_pip "setuptools" do
-        version "47.0.0"
+        version "50.3.1"
       end
     else
       package "#{py_command}-setuptools" do
@@ -130,7 +130,7 @@ define :python_base_setup do
   
   if !use_custom_py
     python_pip "setuptools" do
-      version "47.0.0"
+      version "50.3.1"
       action :install 
     end
   end

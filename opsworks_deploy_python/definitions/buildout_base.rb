@@ -108,7 +108,7 @@ define :buildout_configure do
       # execute '/srv/www/mc/current/bin/python ./bootstrap.py --version=2.13.2'
 
       python_pip "setuptools" do
-        version "47.0.0"
+        version "50.3.1"
       end
 
       # installing future directly on ubuntu to allow future be loaded by uwsgi
