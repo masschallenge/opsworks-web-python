@@ -54,7 +54,7 @@ define :buildout_configure do
     config_file = Helpers.buildout_setting(deploy,'config', node)
     bootstrap_cmd = "#{::File.join(deploy[:deploy_to], 'shared', 'env', 'bin', 'python')} #{::File.join('.', 'bootstrap.py')} --version=2.13.2 -c #{config_file}"
     buildout_cmd = ::File.join(release_path, "bin", "buildout")
-    build_cmd = "#{buildout_cmd} -c #{config_file}"
+    build_cmd = "#{buildout_cmd} -c #{config_file} #{Helpers.buildout_setting(deploy, 'flags', node)}"
     buildout_version = Helpers.buildout_setting(deploy,'buildout_version', node)
     if !(buildout_version.nil? || buildout_version.empty?)
       bootstrap_cmd = "#{bootstrap_cmd} -v #{buildout_version}"
@@ -93,6 +93,9 @@ define :buildout_configure do
       # Bootstrap
       env["REQUESTED_REVISION"] = node["deploy"]["mc"]["scm"]["revision"]
 
+      # attempt reinstall easy_install
+      execute 'sudo curl -s -N https://bootstrap.pypa.io/ez_setup.py -o - | sudo python3.6 && sudo python3.6 -m easy_install pip'
+
       execute bootstrap_cmd do
         user deploy[:user]
         group deploy[:group]
@@ -100,6 +103,10 @@ define :buildout_configure do
         environment env
         not_if "test -x #{::File.join(release_path, 'bin', 'buildout')}"
         action :nothing
+      end
+
+      python_pip "setuptools" do
+        version "47.0.0"
       end
 
       # installing future directly on ubuntu to allow future be loaded by uwsgi
