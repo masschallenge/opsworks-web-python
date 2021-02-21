@@ -95,6 +95,7 @@ define :buildout_configure do
 
       # attempt reinstall easy_install
       execute 'sudo curl -s -N https://bootstrap.pypa.io/ez_setup.py -o - | sudo python3.6 && sudo python3.6 -m easy_install pip'
+      execute 'update-alternatives --install /usr/bin/python python /usr/bin/python3.6 10'
 
       execute bootstrap_cmd do
         user deploy[:user]
