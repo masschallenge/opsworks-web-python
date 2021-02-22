@@ -23,7 +23,7 @@ cookbook 'ulimit', '0.3.2'
 cookbook 'nfs', '1.0.0'
 cookbook 'line', '~> 0.5.1'
 cookbook 'postfix', '3.1.8'
-cookbook 'python', git: 'https://github.com/masschallenge/python', tag: "551699e5e99bfe9670727dbd31ccafe82cd785b2"
+cookbook 'python', git: 'https://github.com/masschallenge/python', tag: "0306869811218702832d8978909370a5a0588b8f"
 cookbook 'runit', '1.5.10'
 cookbook 'rsyslog', '1.12.2'
 cookbook 'newrelic', '2.3.0'
