@@ -63,7 +63,7 @@ define :python_base_setup do
         options '--force-yes'
       end
       python_pip "setuptools" do
-        version "41.0.1"
+        version "50.3.2"
       end
     else
       package "#{py_command}-setuptools" do
