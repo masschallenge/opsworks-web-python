@@ -114,7 +114,7 @@ define :python_base_setup do
   
   if !use_custom_py
     python_pip "setuptools" do
-      version 3.3
+      version 50.3.2
       action :upgrade
     end
   end
