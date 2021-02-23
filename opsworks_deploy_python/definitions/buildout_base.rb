@@ -96,6 +96,7 @@ define :buildout_configure do
       # attempt reinstall easy_install
       execute 'sudo curl -s -N https://bootstrap.pypa.io/ez_setup.py -o - | sudo python3.6 && sudo python3.6 -m easy_install pip'
       execute 'update-alternatives --install /usr/bin/python python /usr/bin/python3.6 10'
+      execute '/srv/www/mc/shared/env/bin/pip install setuptools==50.3.2'
 
       execute bootstrap_cmd do
         user deploy[:user]
@@ -109,7 +110,7 @@ define :buildout_configure do
       # execute '/srv/www/mc/current/bin/python ./bootstrap.py --version=2.13.2'
 
       python_pip "setuptools" do
-        version "50.3.1"
+        version "50.3.2"
       end
 
       # installing future directly on ubuntu to allow future be loaded by uwsgi

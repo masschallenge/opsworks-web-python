@@ -79,7 +79,7 @@ define :python_base_setup do
         options '--force-yes'
       end
       python_pip "setuptools" do
-        version "50.3.1"
+        version "50.3.2"
       end
     else
       package "#{py_command}-setuptools" do
@@ -125,12 +125,13 @@ define :python_base_setup do
       execute "/usr/bin/easy_install-#{py_version} #{pip} #{venv}"
       node.override['python']['pip_location'] = "/usr/bin/pip#{py_version}"
       node.override['python']['virtualenv_location'] = "/usr/bin/virtualenv-#{py_version}"
+      execute '/srv/www/mc/shared/env/bin/pip install setuptools==50.3.2'
     end
   end
   
   if !use_custom_py
     python_pip "setuptools" do
-      version "50.3.1"
+      version "50.3.2"
       action :install 
     end
   end
