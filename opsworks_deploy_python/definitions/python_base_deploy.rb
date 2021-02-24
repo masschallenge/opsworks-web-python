@@ -40,13 +40,20 @@ define :python_base_setup do
   if use_custom_py
     # We need to install a python other than 2.7
     py_command = "python#{py_version}"
-    apt_repository 'deadsnakes' do
-      uri 'http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu'
-      distribution node['lsb'] && node['lsb']['codename'] || 'precise'
-      components ['main']
-      keyserver "keyserver.ubuntu.com"
-      key "DB82666C"
-      action :add
+    # apt_repository 'deadsnakes' do
+    #   uri 'http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu'
+    #   distribution node['lsb'] && node['lsb']['codename'] || 'precise'
+    #   components ['main']
+    #   keyserver "keyserver.ubuntu.com"
+    #   key "DB82666C"
+    #   action :add
+    # end
+
+    execute "python3.6" do
+      command 'sudo add-apt-repository ppa:deadsnakes/ppa'
+      command 'sudo apt-get update'
+      command 'sudo apt-get install python3.6'
+      command 'apt-get install python3.6-dev'
     end
 
     if py_version.to_f >= 3.4
@@ -73,17 +80,17 @@ define :python_base_setup do
       end
     end
     
-    package "#{py_command}-dev" do
-      action :install
-      options '--force-yes'
-      ignore_failure true  # This one doesn't always exist
-    end
+    # package "#{py_command}-dev" do
+    #   action :install
+    #   options '--force-yes'
+    #   ignore_failure true  # This one doesn't always exist
+    # end
 
-    package "#{py_command}-distribute-deadsnakes" do
-      action :install
-      options '--force-yes'
-      ignore_failure true  # This one doesn't always exist
-    end
+    # package "#{py_command}-distribute-deadsnakes" do
+    #   action :install
+    #   options '--force-yes'
+    #   ignore_failure true  # This one doesn't always exist
+    # end
 
     if py_version.to_f >= 3.4
       node.force_override['python']['binary'] = "/usr/bin/#{py_command}"
