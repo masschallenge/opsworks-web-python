@@ -4,7 +4,6 @@ script "mount_volume" do
   interpreter "bash"
   user "root"
   cwd "/home/deploy"
-  environment node['deploy']['mc']['environment']
   code <<-EOH
     cd /vol/www/
     mkdir mc
